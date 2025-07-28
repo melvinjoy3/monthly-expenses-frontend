@@ -7,10 +7,7 @@ const Navbar: React.FC = () => {
   return (
     <nav className="bg-white shadow-md px-6 py-3 flex justify-between items-center">
       <SidePanel />
-      {/* Logo or Brand */}
       <div className="text-xl font-bold text-blue-600">MyApp</div>
-
-      {/* Nav Links */}
       <div className="space-x-6 hidden md:flex">
         <a href="#" className="text-gray-700 hover:text-blue-600">
           Home
@@ -22,8 +19,6 @@ const Navbar: React.FC = () => {
           Contact
         </a>
       </div>
-
-      {/* Profile Dropdown */}
       <div className="relative">
         <button
           onClick={() => setIsProfileOpen(!isProfileOpen)}

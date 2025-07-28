@@ -15,7 +15,6 @@ const SidePanel: React.FC = () => {
         setIsOpen(false);
       }
     };
-
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {
@@ -29,17 +28,14 @@ const SidePanel: React.FC = () => {
 
   return (
     <div className="relative">
-      {/* Hamburger Button */}
       <div className="space-y-1" onClick={() => setIsOpen(!isOpen)}>
         <span className="block w-6 h-0.5 bg-black"></span>
         <span className="block w-6 h-0.5 bg-black"></span>
         <span className="block w-6 h-0.5 bg-black"></span>
       </div>
-      {/* Overlay */}
       {isOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-30 z-40"></div>
       )}
-      {/* Side Panel */}
       <div
         ref={panelRef}
         className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ${
