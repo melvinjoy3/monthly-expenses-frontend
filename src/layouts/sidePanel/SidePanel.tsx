@@ -1,61 +1,58 @@
-// @ts-nocheck
-import React, { useState } from "react";
-import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import { TbTruckDelivery } from "react-icons/tb";
-import { FaWallet } from "react-icons/fa";
-import { MdFavorite, MdHelp } from "react-icons/md";
+// SidePanel.tsx
+import React, { useEffect, useRef, useState } from "react";
 
-const Navbar = () => {
-  const [nav, setNav] = useState(false);
+const SidePanel: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
 
-  const menuItems = [
-    { icon: <TbTruckDelivery size={25} className="mr-4" />, text: "Orders" },
-    { icon: <MdFavorite size={25} className="mr-4" />, text: "Favorites" },
-    { icon: <FaWallet size={25} className="mr-4" />, text: "Wallet" },
-    { icon: <MdHelp size={25} className="mr-4" />, text: "Help" },
-  ];
+  // Close on outside click
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        panelRef.current &&
+        !panelRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
   return (
-    <div className="max-w-[1640px] mx-auto flex justify-between items-center shadow-sm">
-      {/* Left side */}
-      <div className="flex items-center">
-        <div onClick={() => setNav(!nav)} className="cursor-pointer">
-          <AiOutlineMenu size={30} />
-        </div>
+    <div className="relative">
+      {/* Hamburger Button */}
+      <div className="space-y-1" onClick={() => setIsOpen(!isOpen)}>
+        <span className="block w-6 h-0.5 bg-black"></span>
+        <span className="block w-6 h-0.5 bg-black"></span>
+        <span className="block w-6 h-0.5 bg-black"></span>
       </div>
-
-      {/* Side drawer menu */}
+      {/* Overlay */}
+      {isOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-30 z-40"></div>
+      )}
+      {/* Side Panel */}
       <div
-        className={
-          nav
-            ? "fixed top-0 left-0 w-[300px] h-screen bg-white z-10 duration-300"
-            : "fixed top-0 left-[-100%] w-[300px] h-screen bg-white z-10 duration-300"
-        }
+        ref={panelRef}
+        className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
       >
-        <AiOutlineClose
-          onClick={() => setNav(!nav)}
-          size={30}
-          className="absolute right-4 top-4 cursor-pointer"
-        />
-        <h2 className="text-2xl p-4">
-          Best <span className="font-bold">Eats</span>
-        </h2>
-        <nav>
-          <ul className="flex flex-col p-4 text-gray-800">
-            {menuItems.map(({ icon, text }, index) => {
-              return (
-                <div key={index} className=" py-4">
-                  <li className="text-xl flex cursor-pointer  w-[50%] rounded-full mx-auto p-2 hover:text-white hover:bg-black">
-                    {icon} {text}
-                  </li>
-                </div>
-              );
-            })}
-          </ul>
-        </nav>
+        <div className="p-4">
+          <h2 className="text-lg font-bold mb-4">Side Panel</h2>
+          <p>This is the side panel content.</p>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Navbar;
+export default SidePanel;
