@@ -3,13 +3,14 @@ import type { ReactNode } from "react";
 interface Props {
   children?: ReactNode;
   width?: number;
+  className?: string;
 }
 
-const Block = ({ children }: Props) => {
+const Block = ({ children, className }: Props) => {
   return (
     <div
-      className="box-border shadow-md p-4 w-auto h-auto
-      rounded-[5px] bg-backgroundWhite"
+      className={`box-border shadow-lg p-6 w-full h-full
+      rounded-lg bg-backgroundWhite border border-gray-100 ${className || ""}`}
     >
       {children}
     </div>

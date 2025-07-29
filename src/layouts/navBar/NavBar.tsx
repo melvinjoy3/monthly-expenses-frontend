@@ -6,18 +6,11 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="bg-white shadow-md px-6 py-3 flex justify-between items-center">
-      <SidePanel />
-      <div className="text-xl font-bold text-blue-600">MyApp</div>
-      <div className="space-x-6 hidden md:flex">
-        <a href="#" className="text-gray-700 hover:text-blue-600">
-          Home
-        </a>
-        <a href="#" className="text-gray-700 hover:text-blue-600">
-          About
-        </a>
-        <a href="#" className="text-gray-700 hover:text-blue-600">
-          Contact
-        </a>
+      <div className="flex items-center gap-4">
+        <SidePanel />
+        <div className="text-xl font-bold text-black-600">
+          Monthly income and expenses
+        </div>
       </div>
       <div className="relative">
         <button
