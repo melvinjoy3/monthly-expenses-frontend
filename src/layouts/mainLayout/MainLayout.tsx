@@ -1,43 +1,53 @@
 import Block from "@/components/block/Block";
+import DonutChart from "@/components/donutChart/DonutChart";
+import LineChart from "@/components/lineChart/LineChart";
 
 const MainLayout = () => {
   return (
-    <Block>
-      <div className="grid grid-flow-col grid-rows-4 gap-4">
-        <div className="max-w-64">
+    <div className="p-6">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+        {/* Top row - Summary cards */}
+        <div className="lg:col-span-1">
           <Block>
             <div className="flex flex-col">
-              <span>Income</span>
-              <span>$5500</span>
+              <span className="text-gray-600 text-sm">Income</span>
+              <span className="text-2xl font-bold">$5500</span>
             </div>
           </Block>
         </div>
-        <div className="max-w-64">
+        <div className="lg:col-span-1">
           <Block>
             <div className="flex flex-col">
-              <span>Expenses</span>
-              <span>$5500</span>
+              <span className="text-gray-600 text-sm">Expenses</span>
+              <span className="text-2xl font-bold">$3200</span>
             </div>
           </Block>
         </div>
-        <div className="max-w-64">
+        <div className="lg:col-span-1">
           <Block>
             <div className="flex flex-col">
-              <span>Balance</span>
-              <span className="text-green-500">$5500</span>
+              <span className="text-gray-600 text-sm">Balance</span>
+              <span className="text-2xl font-bold text-green-500">$2300</span>
             </div>
           </Block>
         </div>
-        <div className="row-span-3">
-          <div className="row-start-2">
-            <Block />
-          </div>
+
+        {/* Charts row */}
+        <div className="lg:col-span-2">
+          <Block className="flex justify-center items-center">
+            <DonutChart />
+          </Block>
         </div>
-        <div className="row-span-3">
-          <Block />
+        <div className="lg:col-span-2">
+          <Block>
+            <LineChart
+              data={[12, 19, 3, 5, 2, 3]}
+              labels={["Jan", "Feb", "Mar", "Apr", "May", "Jun"]}
+            />
+          </Block>
         </div>
       </div>
-    </Block>
+    </div>
   );
 };
 
