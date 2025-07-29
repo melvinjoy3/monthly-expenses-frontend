@@ -59,7 +59,11 @@ const LineChart: React.FC<LineChartProps> = ({ data, labels }) => {
     },
   };
 
-  return <Line data={chartData} options={options} />;
+  return (
+    <div className="w-full h-64">
+      <Line data={chartData} options={options} />
+    </div>
+  );
 };
 
 export default LineChart;
