@@ -1,11 +1,16 @@
-import { Button } from "@/components/ui/button";
+import React from "react";
+import Navbar from "@/layouts/navBar/NavBar";
+import MainLayout from "./layouts/mainLayout/MainLayout";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>Click me</Button>
+    <div className="h-screen bg-gray-100 w-screen">
+      <Navbar />
+      <div className="p-6 bg-backgroundWhite">
+        <MainLayout />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
